@@ -1,0 +1,129 @@
+<template>
+	<view class="container">
+		<!-- 顶部导航栏 - 作为小程序导航栏，模仿闲鱼布局 -->
+		<view class="navbar">
+			<view class="navbar-content">
+				<!-- 左侧文字 -->
+				<view class="navbar-left">
+					<text class="navbar-title">泰格小助手</text>
+				</view>
+				
+				<!-- 中间搜索框 -->
+				<view class="navbar-center">
+					<view class="search-bar">
+						<u-icon name="search"></u-icon>
+						<input class="search-input" placeholder="搜索内容" placeholder-style="color: #a0a0a0;" />
+					</view>
+				</view>
+			</view>
+		</view>
+		
+		<!-- 页面内容区域 -->
+		<view class="content">
+			<text class="welcome-text">欢迎使用泰格小组手</text>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		onLoad() {
+			
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style scoped>
+	.container {
+		min-height: 100vh;
+		background-color: #f8f9fa;
+	}
+	
+	/* 导航栏样式 - 闲鱼风格布局 */
+	.navbar {
+		background-color: #2563eb;
+		width: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 999;
+		box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+	}
+	
+	.navbar-content {
+		padding: 30rpx;
+		padding-bottom: 30rpx;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		height: 110rpx;
+	}
+	
+	/* 左侧文字 */
+	.navbar-left {
+		flex-shrink: 0;
+		padding-top: 85rpx; /* 让左侧文字向下移动 */
+	}
+	
+	.navbar-title {
+		color: #ffffff;
+		font-size: 36rpx;
+		font-weight: bold;
+	}
+	
+	/* 中间搜索框 - 占据主要空间 */
+	.navbar-center {
+		flex: 1;
+		margin: 0 20rpx;
+		padding-top: 85rpx; /* 让搜索框向下移动 */
+	}
+	
+	.search-bar {
+		width: 60%; 
+		height: 60rpx;
+		background-color: transparent; /* 中间透明 */
+		border: 1px solid #000000; /* 细黑边框 */
+		border-radius: 36rpx;
+		display: flex;
+		align-items: center;
+		margin-left: 15rpx;
+		box-shadow: none; /* 移除阴影效果 */
+	}
+	
+	.search-icon {
+		font-size: 28rpx;
+		color: rgba(128, 128, 128, 0.8); /* 匹配输入框的透明灰色 */
+		margin-right: 12rpx;
+	}
+	
+	.search-input {
+		flex: 1;
+		height: 100%;
+		background: transparent;
+		border: none;
+		outline: none;
+		color: rgba(128, 128, 128, 0.8); /* 透明灰色字体 */
+		font-size: 28rpx;
+	}
+
+	.content {
+		padding: 40rpx 30rpx;
+		padding-top: 220rpx; /* 为固定导航栏留出空间 */
+	}
+	
+	.welcome-text {
+		font-size: 32rpx;
+		color: #666666;
+		text-align: center;
+		display: block;
+		margin-top: 40rpx;
+	}
+</style>
