@@ -158,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(wx) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -191,14 +191,58 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
-    return {};
+    return {
+      statusBarHeight: 0,
+      // 状态栏高度
+      navBarHeight: 0,
+      // 导航栏高度
+      totalNavBarHeight: 0,
+      // 总导航高度（状态栏+导航栏）
+      menuButtonInfo: {} // 胶囊按钮信息
+    };
   },
-  onLoad: function onLoad() {},
-  methods: {}
+  onLoad: function onLoad() {
+    // 获取系统信息，实现动态适配
+    this.getSystemInfo();
+  },
+  methods: {
+    // 获取系统信息并计算导航栏高度
+    getSystemInfo: function getSystemInfo() {
+      try {
+        // 获取系统信息
+        var sysInfo = wx.getSystemInfoSync();
+        // 获取胶囊按钮信息
+        var menuButtonInfo = wx.getMenuButtonBoundingClientRect();
+
+        // 设置状态栏高度
+        this.statusBarHeight = sysInfo.statusBarHeight;
+        // 保存胶囊按钮信息
+        this.menuButtonInfo = menuButtonInfo;
+
+        // 计算导航栏高度：胶囊按钮高度 + 2*(胶囊按钮上边界 - 状态栏高度)
+        // 这个公式可以确保导航栏高度正好包含胶囊按钮，并且上下有相等的边距
+        this.navBarHeight = menuButtonInfo.height + 2 * (menuButtonInfo.top - this.statusBarHeight);
+        // 计算总导航高度
+        this.totalNavBarHeight = this.statusBarHeight + this.navBarHeight;
+      } catch (e) {
+        console.error('获取系统信息失败:', e);
+        // 提供默认值作为降级方案
+        this.statusBarHeight = 20;
+        this.navBarHeight = 44;
+        this.totalNavBarHeight = 64;
+      }
+    }
+  }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
 
 /***/ }),
 
